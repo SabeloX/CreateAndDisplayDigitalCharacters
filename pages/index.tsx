@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import { ChangeEvent, FormEvent, FormEventHandler, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { CharacterList } from '../components/character-list'
 import styles from '../styles/Home.module.css'
+const domain = process.env.DOMAIN
+
 
 export type Character = {
   description: string;
@@ -24,17 +25,21 @@ const characterList: Character[] = [
   }
 ]
 
-const Home: NextPage = () => {
+interface HomeProps {
+  characters: Character[]
+}
+
+const Home: NextPage<HomeProps> = ({ characters }) => {
   const [characterDescription, setCharacterDescription] = useState<string>("");
   const [characterName, setCharacterName] = useState<string>("");
-  const [characters, setCharacters] = useState<Character[]>([]);
+  // const [characters, setCharacters] = useState<Character[]>([]);
   const [error, setError] = useState<string>("");
 
-  useEffect(() => {
-    setCharacters(characterList);
-  }, []);
+  // useEffect(() => {
+  //   setCharacters(characterList);
+  // }, []);
 
-  const submitCharacter = (event: FormEvent) => {
+  const submitCharacter = async (event: FormEvent) => {
     event.preventDefault()
     if (characterName === "" && characterDescription !== "") {
       setError("Please enter your character name.");
@@ -46,7 +51,12 @@ const Home: NextPage = () => {
       setError("Please enter your character details.");
     }
     else {
-      setCharacters([{ name: characterName, description: characterDescription, date: new Date() }, ...characters]);
+      await fetch(`/api/characters/new`,
+        {
+          method: "POST",
+          body: JSON.stringify({ name: characterName, description: characterDescription }),
+        }
+      );
     }
     setCharacterDescription("");
     setCharacterName("");
@@ -91,6 +101,17 @@ const Home: NextPage = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(`${domain}/api/characters`);
+  const data = await response.json();
+
+  return {
+    props: {
+      characters: data ? data.characters as Character[] : []
+    }
+  }
 }
 
 export default Home

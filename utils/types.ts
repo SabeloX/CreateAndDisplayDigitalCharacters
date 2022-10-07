@@ -8,5 +8,5 @@ export interface ResponseFunctions {
 export interface Character {
     name: string;
     description: string;
-    date: Date;
+    date?: Date;
 }
