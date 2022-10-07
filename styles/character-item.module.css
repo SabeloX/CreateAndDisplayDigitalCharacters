@@ -1,0 +1,25 @@
+.item {
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    align-self: flex-end;
+}
+
+.description {
+    font-size: 16px;
+}
+
+.date {
+    font-size: 12px;
+    align-self: flex-end;
+}

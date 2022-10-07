@@ -1,0 +1,8 @@
+.list_container {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
