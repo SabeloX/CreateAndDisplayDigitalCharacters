@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { CharacterList } from '../components/character-list'
 import styles from '../styles/Home.module.css'
@@ -65,6 +66,11 @@ const Home: NextPage<HomeProps> = ({ characters }) => {
         <meta name="description" content="An application for adding Avatar ID." />
       </Head>
       <div className={styles.root}>
+        <Image
+          width={300}
+          height={300}
+          src="/images/—Pngtree—color highlights abstract light effects_5528945.png"
+        />
         <h2 className={styles.title}>Digital Characters</h2>
         <div className={styles.container}>
           <div className={styles.input}>
