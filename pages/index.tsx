@@ -12,19 +12,6 @@ export type Character = {
   date: Date;
 }
 
-const characterList: Character[] = [
-  {
-    name: "Sky Fury",
-    description: "I turn rain into wine. Stars into dust. Sun into lava.",
-    date: new Date(2022, 9, 10)
-  },
-  {
-    name: "Ankh Man",
-    description: "I balance order and chaos in the realm.",
-    date: new Date(2022, 9, 13)
-  }
-]
-
 interface HomeProps {
   characters: Character[]
 }
@@ -34,10 +21,11 @@ const Home: NextPage<HomeProps> = ({ characters }) => {
   const [characterName, setCharacterName] = useState<string>("");
   // const [characters, setCharacters] = useState<Character[]>([]);
   const [error, setError] = useState<string>("");
+  const [characterList, setCharacterList] = useState<Character[]>([]);
 
-  // useEffect(() => {
-  //   setCharacters(characterList);
-  // }, []);
+  useEffect(() => {
+    setCharacterList(characters);
+  }, []);
 
   const submitCharacter = async (event: FormEvent) => {
     event.preventDefault()
@@ -51,16 +39,23 @@ const Home: NextPage<HomeProps> = ({ characters }) => {
       setError("Please enter your character details.");
     }
     else {
-      await fetch(`/api/characters/new`,
-        {
-          method: "POST",
-          body: JSON.stringify({ name: characterName, description: characterDescription }),
-        }
-      );
+      try { 
+        const response = await fetch(`/api/characters/new`,
+          {
+            method: "POST",
+            body: JSON.stringify({ name: characterName, description: characterDescription }),
+          }
+        );
+        const data = await response.json();
+        setCharacterList([data.character as Character, ...characterList]);
+        setCharacterDescription("");
+        setCharacterName("");
+        setError("");
+      }
+      catch (error) {
+        setError("Error saving new character. Please try again.")
+      }
     }
-    setCharacterDescription("");
-    setCharacterName("");
-    setError("");
   }
 
   return (
@@ -96,7 +91,7 @@ const Home: NextPage<HomeProps> = ({ characters }) => {
         </div>
         <div className={styles.characters_container}>
           <h3>Characters that currently exist</h3>
-          <CharacterList characters={characters}/>
+          <CharacterList characters={characterList}/>
         </div>
       </div>
     </div>
