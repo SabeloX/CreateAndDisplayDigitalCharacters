@@ -14,7 +14,7 @@ export const CharacterItem = ({
             <p className={styles.discription}>{character.description}</p>
             <>
                 <p className={styles.name}>{character.name}</p>
-                <p className={styles.date}>{character.date}</p>
+                <p className={styles.date}>{(new Date(character.date).toDateString())}</p>
             </>
         </li>
     )

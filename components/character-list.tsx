@@ -10,7 +10,7 @@ export const CharacterList = ({ characters } : CharacterListProps) => {
     return (
         <ul className={styles.list_container}>
             {
-                characters.map((character, index) => (
+                characters.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date))).map((character, index) => (
                     <CharacterItem key={index + character.name} character={character}/>
                 ))
             }
