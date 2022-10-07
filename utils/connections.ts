@@ -1,6 +1,6 @@
 import mongoose, { Model } from "mongoose";
 
-const { DATABASE } = process.env;
+const { DATABASE } = process.env || "mongodb+srv://SabeloX:HyO4kAJzDmdl8g8H@cluster0.izvrj.mongodb.net/charactersDB?retryWrites=true&w=majority";
 
 export const connect = async () => {
     const connection = await mongoose.connect(DATABASE as string).catch(error => console.log(error));

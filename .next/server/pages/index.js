@@ -129,7 +129,7 @@ var Home_module_default = /*#__PURE__*/__webpack_require__.n(Home_module);
 
 
 
-const domain = process.env.DOMAIN;
+const domain = process.env.DOMAIN || "https://create-and-display-digital-characters.vercel.app/";
 const Home = ({ characters  })=>{
     const { 0: characterDescription , 1: setCharacterDescription  } = (0,external_react_.useState)("");
     const { 0: characterName , 1: setCharacterName  } = (0,external_react_.useState)("");

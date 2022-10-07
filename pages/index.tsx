@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { CharacterList } from '../components/character-list'
 import styles from '../styles/Home.module.css'
-const domain = process.env.DOMAIN
+const domain = process.env.DOMAIN || "https://create-and-display-digital-characters.vercel.app/"
 
 
 export type Character = {

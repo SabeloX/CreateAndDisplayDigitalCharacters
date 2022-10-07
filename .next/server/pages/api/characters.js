@@ -51,7 +51,7 @@ const external_mongoose_namespaceObject = require("mongoose");
 var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_namespaceObject);
 ;// CONCATENATED MODULE: ./utils/connections.ts
 
-const { DATABASE  } = process.env;
+const { DATABASE  } = process.env || "mongodb+srv://SabeloX:HyO4kAJzDmdl8g8H@cluster0.izvrj.mongodb.net/charactersDB?retryWrites=true&w=majority";
 const connect = async ()=>{
     const connection = await external_mongoose_default().connect(DATABASE).catch((error)=>console.log(error));
     console.log("Connected to Database");
