@@ -64,34 +64,37 @@ const Home: NextPage<HomeProps> = ({ characters }) => {
         <title>Characters</title>
         <meta name="description" content="An application for adding Avatar ID." />
       </Head>
-      <div className={styles.container}>
-        <div className={styles.input}>
-          <h2>Digital Characters</h2>
-          <p>Add your character identity. Be creative.</p>
-          <form className={styles.form} onSubmit={(event: FormEvent<HTMLFormElement>) =>submitCharacter(event)}>
-            <input
-              className={styles.name}
-              placeholder='Your name goes here...'
-              value={characterName}
-              onChange={(event: ChangeEvent<HTMLInputElement>) => setCharacterName(event.target.value)}
-            />
-            <textarea
-              className={styles.description}
-              placeholder='Description of your character (e.g., I turn rain into wine. Stars into dust. Sun into lava.)'
-              value={characterDescription}
-              onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setCharacterDescription(event.target.value)}
-            />
-            <button
-              type='submit'
-              className={styles.submit}
-            >
-              Publish
-            </button>
-          </form>
-        </div>
-        <div className={styles.characters_container}>
-          <h3>Characters that currently exist</h3>
-          <CharacterList characters={characterList}/>
+      <div className={styles.root}>
+        <h2 className={styles.title}>Digital Characters</h2>
+        <div className={styles.container}>
+          <div className={styles.input}>
+            <h3 className={styles.heading}>Add your character identity. Be creative.</h3>
+            <form className={styles.form} onSubmit={(event: FormEvent<HTMLFormElement>) =>submitCharacter(event)}>
+              <input
+                className={styles.name}
+                placeholder='Your name goes here...'
+                value={characterName}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setCharacterName(event.target.value)}
+              />
+              <textarea
+                className={styles.description}
+                placeholder='Description of your character (e.g., I turn rain into wine. Stars into dust. Sun into lava.)'
+                value={characterDescription}
+                onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setCharacterDescription(event.target.value)}
+              />
+              {error !== "" && <p className={styles.error}>{error}</p> }
+              <button
+                type='submit'
+                className={styles.submit}
+              >
+                Create
+              </button>
+            </form>
+          </div>
+          <div className={styles.characters_container}>
+            <h3>Characters in realm</h3>
+            <CharacterList characters={characterList}/>
+          </div>
         </div>
       </div>
     </div>

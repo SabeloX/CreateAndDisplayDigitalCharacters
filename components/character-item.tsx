@@ -11,11 +11,11 @@ export const CharacterItem = ({
 }: QuoteTileProps) => {
     return (
         <li className={styles.item}>
-            <p className={styles.discription}>{character.description}</p>
-            <>
+            <p className={styles.description}>{character.description}</p>
+            <div>
                 <p className={styles.name}>{character.name}</p>
                 <p className={styles.date}>{(new Date(character.date).toDateString())}</p>
-            </>
+            </div>
         </li>
     )
 }

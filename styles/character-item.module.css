@@ -1,9 +1,9 @@
 .item {
     box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    width: 300px;
-    min-height: 200px;
+    width: 200px;
+    /* min-height: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,14 +12,21 @@
 .name {
     font-size: 18px;
     font-weight: 500;
-    align-self: flex-end;
+    text-align: end;
 }
 
 .description {
-    font-size: 16px;
+    font-size: 14px;
+    text-align: start;
 }
 
 .date {
     font-size: 12px;
-    align-self: flex-end;
+    text-align: end;
+}
+
+@media only screen and (max-width: 800px) {
+    .item {
+        width: 80%;
+    }
 }

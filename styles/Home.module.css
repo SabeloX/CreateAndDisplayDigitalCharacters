@@ -1,10 +1,18 @@
 .container {
-  padding: 2rem;
   width: 100%;
   display: flex;
-  gap: 50px;
   font-family: monospace;
-  height: 100vh;
+  text-align: center;
+  justify-content: center;
+}
+
+.root {
+  background-color: #F0F1FF;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .input {
@@ -14,7 +22,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+  background-color: #fff;
+  max-height: 2000px;
+  max-width: 1200px;
 }
 
 .form {
@@ -27,7 +40,7 @@
 
 .description {
   height: 110px;
-  width: 500px;
+  width: 80%;
   border-radius: 10px;
   padding: 20px;
   border: none;
@@ -36,7 +49,7 @@
 
 .name {
   height: 50px;
-  width: 500px;
+  width: 80%;
   border-radius: 10px;
   padding: 20px;
   border: none;
@@ -45,7 +58,7 @@
 
 .submit {
   height: 40px;
-  width: 500px;
+  width: 80%;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
   border: none;
   background-color: black;
@@ -57,14 +70,47 @@
 .characters_container {
   display: flex;
   flex-direction: column;
-  border-left: #000 solid 1px;
+  border-radius: 20px;
   gap: 10px;
   padding: 10px;
+  margin: 20px;
   align-items: center;
   width: 50%;
   overflow-y: auto;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+  background-color: #fff;
+  max-height: 2000px;
+  max-width: 1200px;
+}
+
+.title {
+  font-family: 'Roboto', monospace;
 }
 
 .characters_container::-webkit-scrollbar {
   width: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-wrap: wrap;
+  }
+  .input {
+    width: 100%;
+  }
+  .characters_container {
+    width: 100%;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 801px) {
+  .root {
+    height: 100vh;
+  }
 }
